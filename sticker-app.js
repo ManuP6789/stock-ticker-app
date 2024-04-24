@@ -1,9 +1,9 @@
-var https = require('https');
+var http = require('http');
 var url = require('url');
 const { connectToDB, searchCompany, closeConnection } = require('./search-company');
 var port = process.env.PORT || 3000;
 console.log("This goes to the console window");
-https.createServer(async function (req, res) {
+http.createServer(async function (req, res) {
   if (req.url === '/') {
     res.writeHead(200, {'Content-Type': 'text/html'});
     res.write(`
