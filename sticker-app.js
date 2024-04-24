@@ -1,27 +1,23 @@
 var http = require('http');
 var url = require('url');
+var fs = require('fs');
 const { connectToDB, searchCompany, closeConnection } = require('./search-company');
 var port = process.env.PORT || 3000;
 console.log("This goes to the console window");
 http.createServer(async function (req, res) {
   if (req.url === '/') {
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.write(`
-      <h2>Enter Stock Ticker or Company Name</h2>
-      <form action="/process" method="GET">
-          <label for="searchTerm">Search Term:</label><br>
-          <input type="text" id="searchTerm" name="searchTerm"><br>
-          
-          <input type="radio" id="ticker" name="searchType" value="ticker">
-          <label for="ticker">Ticker Symbol</label><br>
-          
-          <input type="radio" id="company" name="searchType" value="company">
-          <label for="company">Company Name</label><br><br>
-          
-          <input type="submit" value="Submit">
-      </form>
-    `);
-    res.end();
+
+    fs.readFile('index.html', 'utf8', function(err, data) {
+      if (err) {
+        res.writeHead(500, {'Content-Type': 'text/plain'});
+        res.end('Internal Server Error');
+        return;
+      }
+      // Serve HTML content
+      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.write(data);
+      res.end();
+    });
   } else if(req.url.startsWith('/process') && req.method === 'GET') {
     console.log('parsing answer');
     const query = url.parse(req.url, true).query;

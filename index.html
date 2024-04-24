@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stock Ticker Search</title>
+  <link rel="stylesheet" href="styles.css">
+<body>
+  <header>
+    <h1>Stock Ticker Search</h1>
+  </header>
+  <main>
+    <h2>Enter Stock Ticker or Company Name</h2>
+    <form action="/process" method="GET">
+      <label for="searchTerm">Search Term:</label><br>
+      <input type="text" id="searchTerm" name="searchTerm" required><br>
+      
+      <input type="radio" id="ticker" name="searchType" value="ticker" required>
+      <label for="ticker">Ticker Symbol</label><br>
+      
+      <input type="radio" id="company" name="searchType" value="company" required>
+      <label for="company">Company Name</label><br><br>
+      
+      <button type="submit">Submit</button>
+    </form>
+    <div id="searchResults"></div>
+  </main>
+  <footer>
+    <p>&copy; 2024 Stock Ticker Search. All rights reserved.</p>
+  </footer>
+</body>
+</html>
