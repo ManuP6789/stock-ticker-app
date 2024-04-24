@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb');
 
-const uri = 'mongodb+srv://manuelpenamt:BKXICMsfd7Zy5FVg@cluster0.3xwj5vj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
+const uri = process.env.MONGODB_URI;
 const dbName = 'Stock';
 const collectionName = 'PublicCompanies';
 
@@ -16,7 +16,7 @@ async function connectToDB() {
 
         return collection;
     } catch (error) {
-        console.error('Error connecting to database', error);
+        console.error('Error connecting to database:', error);
         return null;
     }
 }

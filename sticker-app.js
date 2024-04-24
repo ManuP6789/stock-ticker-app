@@ -13,7 +13,6 @@ http.createServer(async function (req, res) {
         res.end('Internal Server Error');
         return;
       }
-      // Serve HTML content
       res.writeHead(200, {'Content-Type': 'text/html'});
       res.write(data);
       res.end();
